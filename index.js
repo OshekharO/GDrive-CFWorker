@@ -19,32 +19,92 @@ addEventListener("fetch", (event) => {
 let linksHtml = `
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links</title>
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" />
-  </head>
-  <body class="container py-5">
-    <h1 class="mb-4">Search Files</h1>
-    <form action="/search/" method="get" class="mb-4">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search here..." required />
-        <button class="btn btn-primary" type="submit">Search</button>
-      </div>
-    </form>
-    <form action="/searchjson/" method="get">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search JSON here..." required />
-        <button class="btn btn-primary" type="submit">Search JSON</button>
-      </div>
-    </form>
-    SEARCH_RESULT_PLACEHOLDER
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+  <title>GLOBAL INDEXER</title>
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/cheems/goindex-extended/master/images/favicon-x.png" type="image/x-icon" />
+  <style>
+   @import url("https://fonts.googleapis.com/css?family=Londrina+Outline");
+   @import url("https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@700&display=swap");
 
-    <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+   }
+   body {
+    background: #202020;
+    display: fixed;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding-top: 15px;
+    margin-top: 10px;
+   }
+   #box {
+    border: 4px solid #4caf50;
+    border-radius: 45px;
+    background: #8c7373;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.712), -6px -6px 6px rgba(182, 182, 182, 0.075);
+    width: auto;
+    padding: 2.8rem;
+   }
+   .neon {
+    font-family: "Londrina Outline", cursive;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 6em;
+    color: #fff;
+    letter-spacing: 0.15em;
+   }
+   .pink {
+    text-shadow: 0 0 5px #ff7bac, 0 0 10px #ff7bac, 0 0 20px #ff7bac, 0 0 40px #ff7bac, 0 0 80px #ff7bac, 0 0 90px #ff7bac, 0 0 100px #ff7bac, 0 0 150px #ff7bac;
+   }
+
+   a {
+    border: 4px solid #4caf50;
+    border-radius: 65px;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Gemunu Libre", sans-serif;
+    text-align: center;
+    word-wrap: break-word;
+   }
+   *:before,
+   *:after {
+    content: "";
+   }
+   hr {
+    border: 0;
+    margin: 1.35em auto;
+    max-width: 100%;
+    background-position: 50%;
+    box-sizing: border-box;
+   }
+  </style>
+ </head>
+ <body>
+  <main>
+   <h1 class="neon pink">INDEX</h1>
+  </main>
+  <form action="/search/" method="get" class="mb-4">
+   <div class="input-group">
+    <input type="text" name="q" class="form-control" placeholder="Search here..." required />
+    <button class="btn btn-primary" type="submit">Search</button>
+   </div>
+  </form>
+  <form action="/searchjson/" method="get">
+   <div class="input-group">
+    <input type="text" name="q" class="form-control" placeholder="Search JSON here..." required />
+    <button class="btn btn-primary" type="submit">Search JSON</button>
+   </div>
+  </form>
+  <div id="box">
+   SEARCH_RESULT_PLACEHOLDER
+  </div>
+ </body>
 </html>
 `;
 
@@ -100,7 +160,7 @@ async function handleSearch(path, baseUrl, linksHtml) {
 
   file.forEach(function (f) {
     let link = baseUrl + encodeURIComponent(f.name);
-    linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", `<a href="${link}">${f.name} ${f.size}</a><br><br>\nSEARCH_RESULT_PLACEHOLDER`);
+    linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", `<a href="${link}">NAME: ${f.name} SIZE: ${f.size}</a><br><br>\nSEARCH_RESULT_PLACEHOLDER`);
   });
 
   linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", "");

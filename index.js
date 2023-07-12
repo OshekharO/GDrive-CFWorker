@@ -63,8 +63,6 @@ let linksHtml = `
    }
 
    a {
-    border: 4px solid #4caf50;
-    border-radius: 65px;
     text-decoration: none;
     color: white;
     text-transform: uppercase;
@@ -134,7 +132,7 @@ let linksHtml = `
   <form action="/searchjson/" method="get">
    <div class="input-group">
     <input type="text" name="q" class="form-control" placeholder="Search JSON here..." required />
-    <button class="btn btn-danger" type="submit">Search JSON</button>
+    <button class="btn btn-danger" type="submit">JSON</button>
    </div>
   </form>
   <div id="box">
@@ -196,7 +194,7 @@ async function handleSearch(path, baseUrl, linksHtml) {
 
   file.forEach(function (f) {
     let link = baseUrl + encodeURIComponent(f.name);
-    linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", `<a href="${link}">NAME: ${f.name} SIZE: ${f.size}</a><br><br>\nSEARCH_RESULT_PLACEHOLDER`);
+    linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", `<a href="${link}">NAME: ${f.name} <br> SIZE: ${f.size}</a><br><br>\nSEARCH_RESULT_PLACEHOLDER`);
   });
 
   linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", "");

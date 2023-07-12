@@ -194,7 +194,8 @@ async function handleSearch(path, baseUrl, linksHtml) {
 
   file.forEach(function (f) {
     let link = baseUrl + encodeURIComponent(f.name);
-    linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", `<a href="${link}">NAME: ${f.name} <br> SIZE: ${f.size}</a><br><br>\nSEARCH_RESULT_PLACEHOLDER`);
+    let size = Math.round((f.size / 2 ** 30) * 100) / 100;
+    linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", `<a href="${link}">NAME: ${f.name} <br> SIZE: ${size} GB</a><br><br>\nSEARCH_RESULT_PLACEHOLDER`);
   });
 
   linksHtml = linksHtml.replace("SEARCH_RESULT_PLACEHOLDER", "");

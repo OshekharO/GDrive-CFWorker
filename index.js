@@ -83,13 +83,49 @@ let linksHtml = `
     background-position: 50%;
     box-sizing: border-box;
    }
+
+   form {
+    max-width: 600px;
+    margin: 20px auto;
+   }
+
+   .input-group {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+   }
+
+   .form-control {
+    flex-grow: 1;
+    padding: 15px 20px;
+    border: 0;
+    font-size: 16px;
+    outline: none;
+   }
+
+   .btn {
+    padding: 15px 20px;
+    border: 0;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+   }
+
+   .btn:hover {
+    background: #0056b3;
+   }
   </style>
  </head>
  <body>
   <main>
    <h1 class="neon pink">INDEX</h1>
   </main>
-  <form action="/search/" method="get" class="mb-4">
+  <form action="/search/" method="get">
    <div class="input-group">
     <input type="text" name="q" class="form-control" placeholder="Search here..." required />
     <button class="btn btn-primary" type="submit">Search</button>
@@ -98,7 +134,7 @@ let linksHtml = `
   <form action="/searchjson/" method="get">
    <div class="input-group">
     <input type="text" name="q" class="form-control" placeholder="Search JSON here..." required />
-    <button class="btn btn-primary" type="submit">Search JSON</button>
+    <button class="btn btn-danger" type="submit">Search JSON</button>
    </div>
   </form>
   <div id="box">
